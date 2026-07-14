@@ -1,0 +1,92 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Quậy Complex — Thành phố cuối tuần Bà Rịa Vũng Tàu | Căn hộ nghỉ dưỡng mini-hotel',
+  description = 'Quậy Complex — tổ hợp sống, vui chơi giải trí & nghỉ dưỡng thế hệ mới tại Phước Hải, Bà Rịa – Vũng Tàu. Căn hộ mini-hotel 2in1, cách TP.HCM 90 phút, sân bay Long Thành 30 phút. Bàn giao full nội thất 2028.',
+} = Astro.props;
+const ogImage = '/images/phoi-canh-tong-the.jpg';
+
+// ==== TRACKING (thay ID thật khi có) ====
+const GA4_ID = 'G-XXXXXXX';      // TODO: gắn GA4 An Khang / Quậy Complex
+const FB_PIXEL = 'XXXXXXXXXXXX'; // TODO: gắn FB Pixel
+---
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={Astro.site} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:locale" content="vi_VN" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'RealEstateListing',
+      name: 'Quậy Complex',
+      description: description,
+      url: Astro.site,
+      image: new URL(ogImage, Astro.site).toString(),
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Phước Hải',
+        addressRegion: 'Bà Rịa - Vũng Tàu',
+        addressCountry: 'VN',
+      },
+    })} />
+
+    <!-- GA4 -->
+    <script is:inline define:vars={{ GA4_ID }}>
+      if (GA4_ID && !GA4_ID.includes('X')) {
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA4_ID);
+      }
+    </script>
+    <!-- FB Pixel -->
+    <script is:inline define:vars={{ FB_PIXEL }}>
+      if (FB_PIXEL && !FB_PIXEL.includes('X')) {
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', FB_PIXEL); fbq('track', 'PageView');
+      }
+      window.trackContact = function(){ if(window.fbq) fbq('track','Contact'); if(window.gtag) gtag('event','contact'); };
+      window.trackLead = function(){ if(window.fbq) fbq('track','Lead'); if(window.gtag) gtag('event','generate_lead'); };
+    </script>
+  </head>
+  <body class="font-body bg-sand text-ocean-deep antialiased">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  html { scroll-behavior: smooth; }
+  .font-display { font-family: 'Be Vietnam Pro', sans-serif; }
+</style>
