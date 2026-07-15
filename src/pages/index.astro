@@ -4,7 +4,6 @@ import Layout from '../layouts/Layout.astro';
 const HOTLINE = '0000000000';       // TODO: hotline An Khang Real
 const HOTLINE_DISPLAY = 'Đang cập nhật';
 const ZALO = 'https://zalo.me/0000000000'; // TODO
-const YT_ID = '3ZZBOHHo7z0';
 
 const lyDo = [
   { icon: '🏆', title: 'Vị trí "cự ly vàng"', desc: 'Chỉ 90 phút từ trung tâm TP.HCM, ~30 phút tới Sân bay Quốc tế Long Thành. Đón dòng khách khổng lồ từ siêu đô thị 14 triệu dân.' },
@@ -95,9 +94,11 @@ const faq = [
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mb-8">Khám phá dự án qua video</h2>
       <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="padding-bottom:56.25%">
-        <iframe class="absolute inset-0 w-full h-full" src={`https://www.youtube.com/embed/${YT_ID}`}
-          title="Video dự án Quậy Complex" frameborder="0" loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <video class="absolute inset-0 w-full h-full" controls preload="metadata"
+          title="Video dự án Quậy Complex">
+          <source src="/videos/gioi-thieu-quay-complex.mp4" type="video/mp4" />
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
       </div>
     </div>
   </section>
