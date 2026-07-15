@@ -75,13 +75,13 @@ const faq = [
   <section class="py-20 px-6 bg-white">
     <div class="max-w-6xl mx-auto">
       <h2 class="font-display font-black text-3xl sm:text-4xl text-center mb-3">4 Lý do nên đầu tư</h2>
-      <p class="text-center text-ocean-light mb-12 max-w-2xl mx-auto">Vì sao Quậy Complex là cơ hội không thể bỏ lỡ</p>
+      <p class="text-center text-lg text-ocean-light mb-12 max-w-2xl mx-auto">Vì sao Quậy Complex là cơ hội không thể bỏ lỡ</p>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {lyDo.map((l) => (
           <div class="bg-sand rounded-2xl p-7 border border-ocean/5 hover:shadow-xl hover:-translate-y-1 transition-all">
             <div class="text-4xl mb-4">{l.icon}</div>
-            <h3 class="font-display font-bold text-lg mb-2">{l.title}</h3>
-            <p class="text-sm text-ocean-deep/70 leading-relaxed">{l.desc}</p>
+            <h3 class="font-display font-bold text-xl mb-2">{l.title}</h3>
+            <p class="text-base text-ocean-deep/75 leading-relaxed text-justify">{l.desc}</p>
           </div>
         ))}
       </div>
@@ -132,8 +132,8 @@ const faq = [
             <div class="p-6">
               <div class="inline-block bg-sunset/10 text-sunset font-semibold text-xs px-3 py-1 rounded-full mb-3">{s.note}</div>
               <h4 class="font-display font-bold text-xl mb-3">{s.ten}</h4>
-              <p class="text-sm text-ocean-deep/70">Thông thủy: <b>{s.tt} m²</b></p>
-              <p class="text-sm text-ocean-deep/70">Tim tường: {s.tim} m²</p>
+              <p class="text-base text-ocean-deep/75">Thông thủy: <b>{s.tt} m²</b></p>
+              <p class="text-base text-ocean-deep/75">Tim tường: {s.tim} m²</p>
             </div>
           </div>
         ))}
@@ -146,7 +146,7 @@ const faq = [
   <section class="py-20 px-6 bg-white">
     <div class="max-w-6xl mx-auto">
       <h2 class="font-display font-black text-3xl sm:text-4xl text-center mb-3">Hệ sinh thái tiện ích</h2>
-      <p class="text-center text-ocean-light mb-12">4 chất "Quậy": Văn hóa · Nghệ thuật · Thể thao · Ẩm thực</p>
+      <p class="text-center text-lg text-ocean-light mb-12">4 chất "Quậy": Văn hóa · Nghệ thuật · Thể thao · Ẩm thực</p>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {tienIch.map((t) => (
           <div class="group rounded-2xl overflow-hidden bg-sand border border-ocean/5 hover:shadow-xl transition-all">
@@ -156,7 +156,7 @@ const faq = [
             </div>
             <div class="p-4">
               <h3 class="font-display font-bold mb-1">{t.ten}</h3>
-              <p class="text-xs text-ocean-deep/60 leading-relaxed">{t.desc}</p>
+              <p class="text-sm text-ocean-deep/70 leading-relaxed text-justify">{t.desc}</p>
             </div>
           </div>
         ))}
@@ -165,7 +165,7 @@ const faq = [
       <!-- Tổng mặt bằng tiện ích -->
       <div class="mt-16">
         <h3 class="font-display font-bold text-2xl sm:text-3xl text-center mb-3">Tổng mặt bằng tiện ích</h3>
-        <p class="text-center text-ocean-light mb-6">Nhấn vào ảnh để phóng to xem chi tiết</p>
+        <p class="text-center text-lg text-ocean-light mb-6">Nhấn vào ảnh để phóng to xem chi tiết</p>
         <img src="/images/tong-mat-bang-tien-ich.jpg" alt="Tổng mặt bằng tiện ích Quậy Complex"
           class="zoomable rounded-2xl shadow-lg w-full cursor-zoom-in border border-ocean/5" loading="lazy" />
       </div>
@@ -174,7 +174,7 @@ const faq = [
       <div class="mt-16 bg-ocean-deep rounded-3xl p-8 sm:p-12 text-white grid sm:grid-cols-2 gap-8 items-center">
         <div>
           <h3 class="font-display font-bold text-2xl mb-4">Bài toán đầu tư</h3>
-          <p class="text-white/80 text-sm mb-6">Mô hình mini-hotel cho dòng tiền ổn định, tăng trưởng theo hạ tầng khu vực.</p>
+          <p class="text-white/85 text-base mb-6 text-justify">Mô hình mini-hotel cho dòng tiền ổn định, tăng trưởng theo hạ tầng khu vực.</p>
           <img src="/images/layout-can-ho.jpg" alt="Layout căn hộ" class="zoomable rounded-xl w-full cursor-zoom-in" loading="lazy" />
         </div>
         <div class="grid grid-cols-2 gap-4">
@@ -204,7 +204,7 @@ const faq = [
     <div class="max-w-2xl mx-auto">
       <h2 class="font-display font-black text-3xl sm:text-4xl mb-4">Bảng giá & Ưu đãi</h2>
       <div class="inline-block bg-white/20 backdrop-blur px-6 py-2 rounded-full font-semibold mb-6">🔥 COMING SOON</div>
-      <p class="text-white/90 mb-8">Bảng giá và chính sách ưu đãi mới nhất đang được cập nhật. Để lại thông tin để nhận ngay khi công bố.</p>
+      <p class="text-white/90 text-lg mb-8">Bảng giá và chính sách ưu đãi mới nhất đang được cập nhật. Để lại thông tin để nhận ngay khi công bố.</p>
       <a href="#lien-he" onclick="trackContact()"
         class="inline-block bg-white text-sunset font-bold px-8 py-4 rounded-full text-lg shadow-lg hover:scale-105 transition-transform">
         Đăng ký nhận bảng giá →
@@ -222,7 +222,7 @@ const faq = [
             <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
               {q}<span class="text-sunset group-open:rotate-45 transition-transform text-xl">+</span>
             </summary>
-            <p class="text-sm text-ocean-deep/70 mt-3 leading-relaxed">{a}</p>
+            <p class="text-base text-ocean-deep/75 mt-3 leading-relaxed text-justify">{a}</p>
           </details>
         ))}
       </div>
@@ -233,7 +233,7 @@ const faq = [
   <section id="lien-he" class="py-20 px-6 bg-ocean-deep text-white">
     <div class="max-w-xl mx-auto text-center">
       <h2 class="font-display font-black text-3xl sm:text-4xl mb-2">Đăng ký tư vấn</h2>
-      <p class="text-white/70 mb-8">An Khang Real — Đơn vị tư vấn & phân phối chính thức</p>
+      <p class="text-white/75 text-lg mb-8">An Khang Real — Đơn vị tư vấn & phân phối chính thức</p>
       <form class="space-y-4 text-left" onsubmit="trackLead()" method="POST" action="#">
         <input required name="name" placeholder="Họ và tên"
           class="w-full px-5 py-3 rounded-xl bg-white/10 border border-white/20 placeholder-white/50 focus:outline-none focus:border-sunset" />
