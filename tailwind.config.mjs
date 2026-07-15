@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        ocean: { DEFAULT: '#0a4d68', deep: '#05263a', light: '#088395' },
-        sunset: { DEFAULT: '#ff6b35', pink: '#ff2e93', gold: '#ffb703' },
-        sand: '#fef6e4',
+        ocean: { DEFAULT: '#4f46e5', deep: '#1e1b4b', light: '#7c6df2' },
+        sunset: { DEFAULT: '#7c3aed', pink: '#c026d3', gold: '#a78bfa' },
+        sand: '#f5f3ff',
       },
       fontFamily: {
         display: ['"Be Vietnam Pro"', 'system-ui', 'sans-serif'],
