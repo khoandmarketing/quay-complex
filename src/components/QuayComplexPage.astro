@@ -1,0 +1,309 @@
+---
+
+const HOTLINE = '0000000000';       // TODO: hotline An Khang Real
+const HOTLINE_DISPLAY = 'Đang cập nhật';
+const ZALO = 'https://zalo.me/0000000000'; // TODO
+
+const lyDo = [
+  { icon: '🏆', title: 'Vị trí "cự ly vàng"', desc: 'Chỉ 90 phút từ trung tâm TP.HCM, ~30 phút tới Sân bay Quốc tế Long Thành. Đón dòng khách khổng lồ từ siêu đô thị 14 triệu dân.' },
+  { icon: '💰', title: 'Tài sản 2 in 1 sinh lời', desc: 'Vừa sở hữu "Nhà Sài Gòn có biển" cho gia đình, vừa khai thác cho thuê mô hình mini-hotel khi không dùng.' },
+  { icon: '🎡', title: 'Thành phố cuối tuần 24/7', desc: 'Hệ sinh thái giải trí – nghỉ dưỡng all-in-one không ngủ, giữ chân du khách trọn 48 giờ cuối tuần.' },
+  { icon: '🔑', title: 'Bàn giao full nội thất', desc: 'Xách vali vào ở hoặc cho thuê sinh lời ngay. Vận hành & leasing chuẩn quốc tế đảm bảo công suất khai thác.' },
+];
+
+const tongQuan = [
+  ['Vị trí', 'Phước Hải, Bà Rịa – Vũng Tàu'],
+  ['Địa thế', 'Trước biển – sau núi Minh Đạm – gần rừng'],
+  ['Kết nối', 'Cao tốc CT01, CT28, Tỉnh lộ DT48'],
+  ['Cách TP.HCM', '~90 phút (~120km)'],
+  ['Sân bay Long Thành', '~30 phút'],
+  ['Quy mô', '9 tháp — "9 gu" may đo'],
+  ['Thiết kế', 'AMA Group (Italia, 50+ năm)'],
+  ['Bàn giao', 'Full nội thất, dự kiến 2028'],
+];
+
+const sanPham = [
+  { ten: 'Studio', tt: '25,25 – 30,05', tim: '28,65 – 33,47', note: 'Loại chủ đạo', img: 'can-studio.jpg' },
+  { ten: '1PN+', tt: '41,71', tim: '47,44', note: 'Không gian mở', img: 'can-1pn.jpg' },
+  { ten: '2PN (căn góc)', tt: '61,49 – 63,09', tim: '67,92 – 69,68', note: 'Căn góc hiếm', img: 'can-2pn.jpg' },
+];
+
+const tienIch = [
+  { img: 'aqua-funny-park.jpg', ten: 'Aqua Funny Park', desc: 'Công viên nước cao 7m, Dolphin Playground, Mega Aqua World & Hydrotherapy' },
+  { img: 'gaming-center.jpg', ten: 'Gaming Center', desc: 'Vũ trụ trò chơi trong nhà — không gian giải trí công nghệ đèn neon' },
+  { img: 'entertainment-complex-dem.jpg', ten: 'Nightlife 3 tầng', desc: 'Cổng chào Đèn Đêm, Phố ẩm thực đêm, Đại nhạc hội, bar & lounge' },
+  { img: 'oasis-pool.jpg', ten: 'Oasis Pool', desc: 'Hồ bơi ốc đảo riêng tư, pool party, cụm Hidden Jacuzzi' },
+  { img: 'beach-bar-romantic-garden.jpg', ten: 'Beach Bar & Romantic Garden', desc: 'Rạp phim bên biển, vườn cưới lãng mạn, điểm cầu hôn lý tưởng' },
+  { img: 'sky-yoga-rooftop.jpg', ten: 'Sky Yoga & Rooftop', desc: 'Sky Yoga rooftop, Galaxy Walk, ngắm hoàng hôn, thưởng trà Quậy Club' },
+  { img: 'quang-truong-ocean-galaxy.jpg', ten: 'Quảng trường Ocean Galaxy', desc: 'Không gian sự kiện ngoài trời, pháo hoa, đại nhạc hội bên biển' },
+  { img: 'art-lobby.jpg', ten: 'Contemporary Art Lobby', desc: 'Sảnh đón nghệ thuật đương đại, trải nghiệm 5 sao' },
+];
+
+const faq = [
+  ['Quậy Complex ở đâu?', 'Dự án tọa lạc tại Phước Hải, Bà Rịa – Vũng Tàu, cách trung tâm TP.HCM khoảng 90 phút và sân bay Long Thành khoảng 30 phút.'],
+  ['Loại hình sản phẩm là gì?', 'Căn hộ mini-hotel nghỉ dưỡng mô hình 2 in 1 (vừa ở vừa khai thác cho thuê), gồm Studio, 1PN+ và 2PN. 100% căn có bồn tắm.'],
+  ['Khi nào bàn giao?', 'Dự kiến bàn giao năm 2028, hoàn thiện full nội thất — xách vali vào ở hoặc cho thuê ngay.'],
+  ['Có hỗ trợ cho thuê lại không?', 'Có. Đơn vị vận hành & leasing chuẩn quốc tế hỗ trợ khai thác dòng tiền, đảm bảo công suất cho chủ sở hữu.'],
+  ['Giá bán bao nhiêu?', 'Bảng giá và chính sách ưu đãi đang được cập nhật. Vui lòng để lại thông tin để nhận ngay khi công bố.'],
+];
+---
+
+<>
+  <!-- ============ 1. HERO ============ -->
+  <header class="relative min-h-[100svh] flex items-center justify-center text-center overflow-hidden">
+    <img src="/images/hero.jpg" alt="Địa thế hiếm có Quậy Complex — trước biển, sau núi, gần rừng"
+      class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-b from-ocean-deep/75 via-ocean-deep/55 to-ocean-deep/90"></div>
+    <div class="relative z-10 px-6 max-w-4xl mx-auto text-white">
+      <p class="text-sunset-gold font-semibold tracking-[0.3em] uppercase text-sm mb-4">Bà Rịa – Vũng Tàu</p>
+      <h1 class="font-display font-extrabold text-5xl sm:text-6xl md:text-7xl leading-tight mb-4">
+        QUẬY <span class="text-sunset-pink">COMPLEX</span>
+      </h1>
+      <p class="font-display text-xl sm:text-2xl font-semibold mb-2">Quậy Your Way!</p>
+      <p class="text-base sm:text-lg text-white/90 max-w-2xl mx-auto mb-8">
+        Thành phố cuối tuần của Siêu đô thị TP.HCM — Tổ hợp sống · vui chơi giải trí · nghỉ dưỡng thế hệ mới, sôi động 24/7 bên biển.
+      </p>
+      <a href="#lien-he" onclick="trackContact()"
+        class="inline-block bg-sunset hover:bg-sunset-pink transition-colors text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg shadow-sunset/30">
+        Nhận thông tin & bảng giá →
+      </a>
+    </div>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm animate-bounce">▼</div>
+  </header>
+
+  <!-- ============ 2. 4 LÝ DO ============ -->
+  <section class="py-20 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-center mb-3">4 Lý do nên đầu tư</h2>
+      <p class="text-center text-ocean-light mb-12 max-w-2xl mx-auto">Vì sao Quậy Complex là cơ hội không thể bỏ lỡ</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {lyDo.map((l) => (
+          <div class="bg-sand rounded-2xl p-7 border border-ocean/5 hover:shadow-xl hover:-translate-y-1 transition-all">
+            <div class="text-4xl mb-4">{l.icon}</div>
+            <h3 class="font-display font-bold text-lg mb-2">{l.title}</h3>
+            <p class="text-sm text-ocean-deep/70 leading-relaxed">{l.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VIDEO ============ -->
+  <section class="py-16 px-6 bg-ocean-deep">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mb-8">Khám phá dự án qua video</h2>
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="padding-bottom:56.25%">
+        <video class="absolute inset-0 w-full h-full" controls preload="metadata"
+          title="Video dự án Quậy Complex">
+          <source src="/videos/gioi-thieu-quay-complex.mp4" type="video/mp4" />
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. TỔNG QUAN ============ -->
+  <section class="py-20 px-6 bg-sand">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-center mb-12">Thông tin tổng quan</h2>
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <img src="/images/ban-do-ket-noi-moi.jpg" alt="Bản đồ kết nối Quậy Complex"
+          class="zoomable rounded-2xl shadow-lg w-full cursor-zoom-in" loading="lazy" />
+        <div>
+          <dl class="divide-y divide-ocean/10">
+            {tongQuan.map(([k, v]) => (
+              <div class="flex justify-between py-3 gap-4">
+                <dt class="font-semibold text-ocean-deep/60">{k}</dt>
+                <dd class="text-right font-medium">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <h3 class="font-display font-bold text-2xl text-center mt-16 mb-8">Loại hình sản phẩm</h3>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {sanPham.map((s) => (
+          <div class="bg-white rounded-2xl overflow-hidden text-center border border-ocean/5 shadow-sm">
+            <div class="aspect-[4/3] overflow-hidden bg-sand">
+              <img src={`/images/${s.img}`} alt={`Mặt bằng căn ${s.ten}`}
+                class="zoomable w-full h-full object-cover cursor-zoom-in hover:scale-105 transition-transform" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <div class="inline-block bg-sunset/10 text-sunset font-semibold text-xs px-3 py-1 rounded-full mb-3">{s.note}</div>
+              <h4 class="font-display font-bold text-xl mb-3">{s.ten}</h4>
+              <p class="text-sm text-ocean-deep/70">Thông thủy: <b>{s.tt} m²</b></p>
+              <p class="text-sm text-ocean-deep/70">Tim tường: {s.tim} m²</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-sm text-ocean-light mt-4">✓ 100% căn hộ đều có bồn tắm</p>
+    </div>
+  </section>
+
+  <!-- ============ 4. CHI TIẾT TIỆN ÍCH ============ -->
+  <section class="py-20 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-center mb-3">Hệ sinh thái tiện ích</h2>
+      <p class="text-center text-ocean-light mb-12">4 chất "Quậy": Văn hóa · Nghệ thuật · Thể thao · Ẩm thực</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {tienIch.map((t) => (
+          <div class="group rounded-2xl overflow-hidden bg-sand border border-ocean/5 hover:shadow-xl transition-all">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img src={`/images/${t.img}`} alt={t.ten}
+                class="zoomable w-full h-full object-cover cursor-zoom-in group-hover:scale-105 transition-transform" loading="lazy" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-display font-bold mb-1">{t.ten}</h3>
+              <p class="text-xs text-ocean-deep/60 leading-relaxed">{t.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Tổng mặt bằng tiện ích -->
+      <div class="mt-16">
+        <h3 class="font-display font-bold text-2xl sm:text-3xl text-center mb-3">Tổng mặt bằng tiện ích</h3>
+        <p class="text-center text-ocean-light mb-6">Nhấn vào ảnh để phóng to xem chi tiết</p>
+        <img src="/images/tong-mat-bang-tien-ich.jpg" alt="Tổng mặt bằng tiện ích Quậy Complex"
+          class="zoomable rounded-2xl shadow-lg w-full cursor-zoom-in border border-ocean/5" loading="lazy" />
+      </div>
+
+      <!-- Bài toán đầu tư -->
+      <div class="mt-16 bg-ocean-deep rounded-3xl p-8 sm:p-12 text-white grid sm:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="font-display font-bold text-2xl mb-4">Bài toán đầu tư</h3>
+          <p class="text-white/80 text-sm mb-6">Mô hình mini-hotel cho dòng tiền ổn định, tăng trưởng theo hạ tầng khu vực.</p>
+          <img src="/images/layout-can-ho.jpg" alt="Layout căn hộ" class="zoomable rounded-xl w-full cursor-zoom-in" loading="lazy" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white/10 rounded-2xl p-5 text-center">
+            <div class="text-3xl font-bold text-sunset-gold">8→15%</div>
+            <div class="text-xs text-white/70 mt-1">Tỷ suất lợi nhuận/năm</div>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-5 text-center">
+            <div class="text-3xl font-bold text-sunset-gold">60→80%</div>
+            <div class="text-xs text-white/70 mt-1">Công suất khai thác</div>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-5 text-center">
+            <div class="text-3xl font-bold text-sunset-gold">2028</div>
+            <div class="text-xs text-white/70 mt-1">Bàn giao</div>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-5 text-center">
+            <div class="text-3xl font-bold text-sunset-gold">9</div>
+            <div class="text-xs text-white/70 mt-1">Tháp — 9 gu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. GIÁ - COMING SOON ============ -->
+  <section class="py-20 px-6 bg-gradient-to-br from-sunset to-sunset-pink text-white text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mb-4">Bảng giá & Ưu đãi</h2>
+      <div class="inline-block bg-white/20 backdrop-blur px-6 py-2 rounded-full font-semibold mb-6">🔥 COMING SOON</div>
+      <p class="text-white/90 mb-8">Bảng giá và chính sách ưu đãi mới nhất đang được cập nhật. Để lại thông tin để nhận ngay khi công bố.</p>
+      <a href="#lien-he" onclick="trackContact()"
+        class="inline-block bg-white text-sunset font-bold px-8 py-4 rounded-full text-lg shadow-lg hover:scale-105 transition-transform">
+        Đăng ký nhận bảng giá →
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="py-20 px-6 bg-sand">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display font-bold text-3xl text-center mb-10">Câu hỏi thường gặp</h2>
+      <div class="space-y-3">
+        {faq.map(([q, a]) => (
+          <details class="bg-white rounded-xl p-5 border border-ocean/5 group">
+            <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+              {q}<span class="text-sunset group-open:rotate-45 transition-transform text-xl">+</span>
+            </summary>
+            <p class="text-sm text-ocean-deep/70 mt-3 leading-relaxed">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. LIÊN HỆ ============ -->
+  <section id="lien-he" class="py-20 px-6 bg-ocean-deep text-white">
+    <div class="max-w-xl mx-auto text-center">
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mb-2">Đăng ký tư vấn</h2>
+      <p class="text-white/70 mb-8">An Khang Real — Đơn vị tư vấn & phân phối chính thức</p>
+      <form class="space-y-4 text-left" onsubmit="trackLead()" method="POST" action="#">
+        <input required name="name" placeholder="Họ và tên"
+          class="w-full px-5 py-3 rounded-xl bg-white/10 border border-white/20 placeholder-white/50 focus:outline-none focus:border-sunset" />
+        <input required name="phone" type="tel" placeholder="Số điện thoại"
+          class="w-full px-5 py-3 rounded-xl bg-white/10 border border-white/20 placeholder-white/50 focus:outline-none focus:border-sunset" />
+        <select name="loai" class="w-full px-5 py-3 rounded-xl bg-white/10 border border-white/20 text-white/90 focus:outline-none focus:border-sunset">
+          <option class="text-ocean-deep">Loại căn quan tâm</option>
+          <option class="text-ocean-deep">Studio</option>
+          <option class="text-ocean-deep">1PN+</option>
+          <option class="text-ocean-deep">2PN</option>
+        </select>
+        <button type="submit" class="w-full bg-sunset hover:bg-sunset-pink transition-colors font-bold py-4 rounded-xl text-lg">
+          Gửi đăng ký
+        </button>
+      </form>
+      <div class="flex gap-3 justify-center mt-8">
+        <a href={`tel:${HOTLINE}`} onclick="trackContact()" class="flex-1 bg-white/10 hover:bg-white/20 py-3 rounded-xl font-semibold transition-colors">📞 Hotline</a>
+        <a href={ZALO} onclick="trackContact()" class="flex-1 bg-white/10 hover:bg-white/20 py-3 rounded-xl font-semibold transition-colors">💬 Zalo</a>
+      </div>
+      <p class="text-white/40 text-xs mt-6">Hotline: {HOTLINE_DISPLAY}</p>
+    </div>
+  </section>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm select-none">
+    <button id="lb-close" aria-label="Đóng" class="absolute top-4 right-5 text-white/80 hover:text-white text-4xl leading-none z-10">&times;</button>
+    <button id="lb-prev" aria-label="Trước" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-5xl px-2 z-10">&#8249;</button>
+    <button id="lb-next" aria-label="Sau" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-5xl px-2 z-10">&#8250;</button>
+    <img id="lb-img" src="" alt="" class="max-w-[92vw] max-h-[88vh] object-contain rounded-lg shadow-2xl" />
+    <div id="lb-caption" class="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/80 text-sm text-center px-4"></div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const imgs = Array.from(document.querySelectorAll('img.zoomable'));
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-caption');
+      let idx = 0;
+      function show(i) {
+        idx = (i + imgs.length) % imgs.length;
+        lbImg.src = imgs[idx].currentSrc || imgs[idx].src;
+        lbImg.alt = imgs[idx].alt || '';
+        cap.textContent = imgs[idx].alt || '';
+      }
+      function open(i) { show(i); lb.classList.remove('hidden'); lb.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+      function close() { lb.classList.add('hidden'); lb.classList.remove('flex'); document.body.style.overflow = ''; }
+      imgs.forEach((im, i) => im.addEventListener('click', () => open(i)));
+      document.getElementById('lb-close').addEventListener('click', close);
+      document.getElementById('lb-next').addEventListener('click', (e) => { e.stopPropagation(); show(idx + 1); });
+      document.getElementById('lb-prev').addEventListener('click', (e) => { e.stopPropagation(); show(idx - 1); });
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (lb.classList.contains('hidden')) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowRight') show(idx + 1);
+        else if (e.key === 'ArrowLeft') show(idx - 1);
+      });
+      let sx = 0;
+      lb.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+    })();
+  </script>
+
+  <footer class="bg-ocean-deep border-t border-white/10 text-white/50 text-center text-xs py-8 px-6">
+    <p class="font-display font-bold text-white text-lg mb-2">QUẬY COMPLEX</p>
+    <p>Phước Hải, Bà Rịa – Vũng Tàu · Phân phối bởi An Khang Real</p>
+    <p class="mt-3 max-w-2xl mx-auto">* Thông tin, hình ảnh mang tính tham khảo, không phải cam kết pháp lý. Thông tin chính thức căn cứ hợp đồng mua bán.</p>
+  </footer>
+</>
