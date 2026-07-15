@@ -24,9 +24,9 @@ const tongQuan = [
 ];
 
 const sanPham = [
-  { ten: 'Studio', tt: '25,25 – 30,05', tim: '28,65 – 33,47', note: 'Loại chủ đạo' },
-  { ten: '1PN+', tt: '41,71', tim: '47,44', note: 'Không gian mở' },
-  { ten: '2PN (căn góc)', tt: '61,49 – 63,09', tim: '67,92 – 69,68', note: 'Căn góc hiếm' },
+  { ten: 'Studio', tt: '25,25 – 30,05', tim: '28,65 – 33,47', note: 'Loại chủ đạo', img: 'can-studio.jpg' },
+  { ten: '1PN+', tt: '41,71', tim: '47,44', note: 'Không gian mở', img: 'can-1pn.jpg' },
+  { ten: '2PN (căn góc)', tt: '61,49 – 63,09', tim: '67,92 – 69,68', note: 'Căn góc hiếm', img: 'can-2pn.jpg' },
 ];
 
 const tienIch = [
@@ -125,11 +125,17 @@ const faq = [
       <h3 class="font-display font-bold text-2xl text-center mt-16 mb-8">Loại hình sản phẩm</h3>
       <div class="grid sm:grid-cols-3 gap-6">
         {sanPham.map((s) => (
-          <div class="bg-white rounded-2xl p-6 text-center border border-ocean/5 shadow-sm">
-            <div class="inline-block bg-sunset/10 text-sunset font-semibold text-xs px-3 py-1 rounded-full mb-3">{s.note}</div>
-            <h4 class="font-display font-bold text-xl mb-3">{s.ten}</h4>
-            <p class="text-sm text-ocean-deep/70">Thông thủy: <b>{s.tt} m²</b></p>
-            <p class="text-sm text-ocean-deep/70">Tim tường: {s.tim} m²</p>
+          <div class="bg-white rounded-2xl overflow-hidden text-center border border-ocean/5 shadow-sm">
+            <div class="aspect-[4/3] overflow-hidden bg-sand">
+              <img src={`/images/${s.img}`} alt={`Mặt bằng căn ${s.ten}`}
+                class="zoomable w-full h-full object-cover cursor-zoom-in hover:scale-105 transition-transform" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <div class="inline-block bg-sunset/10 text-sunset font-semibold text-xs px-3 py-1 rounded-full mb-3">{s.note}</div>
+              <h4 class="font-display font-bold text-xl mb-3">{s.ten}</h4>
+              <p class="text-sm text-ocean-deep/70">Thông thủy: <b>{s.tt} m²</b></p>
+              <p class="text-sm text-ocean-deep/70">Tim tường: {s.tim} m²</p>
+            </div>
           </div>
         ))}
       </div>
