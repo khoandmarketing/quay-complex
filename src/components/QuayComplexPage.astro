@@ -3,6 +3,8 @@
 const HOTLINE = '0788949698';
 const HOTLINE_DISPLAY = '0788 94 96 98';
 const ZALO = 'https://zalo.me/0788949698';
+// Google Apps Script Web App endpoint (nhận lead → ghi Google Sheet). Dán link /exec vào đây.
+const SHEET_ENDPOINT = 'PASTE_APPS_SCRIPT_EXEC_URL_HERE';
 
 const lyDo = [
   { icon: '🏆', title: 'Vị trí "cự ly vàng"', desc: 'Chỉ 90 phút từ trung tâm TP.HCM, ~30 phút tới Sân bay Quốc tế Long Thành. Đón dòng khách khổng lồ từ siêu đô thị 14 triệu dân.' },
@@ -234,7 +236,7 @@ const faq = [
     <div class="max-w-xl mx-auto text-center">
       <h2 class="font-display font-black text-3xl sm:text-4xl mb-2">Đăng ký tư vấn</h2>
       <p class="text-white/75 text-lg mb-8">An Khang Real — Đơn vị tư vấn & phân phối chính thức</p>
-      <form class="space-y-4 text-left" onsubmit="trackLead()" method="POST" action="#">
+      <form id="lead-form" class="space-y-4 text-left" data-endpoint={SHEET_ENDPOINT}>
         <input required name="name" placeholder="Họ và tên"
           class="w-full px-5 py-3 rounded-xl bg-white/10 border border-white/20 placeholder-white/50 focus:outline-none focus:border-sunset" />
         <input required name="phone" type="tel" placeholder="Số điện thoại"
@@ -245,9 +247,10 @@ const faq = [
           <option class="text-ocean-deep">1PN+</option>
           <option class="text-ocean-deep">2PN</option>
         </select>
-        <button type="submit" class="w-full bg-sunset hover:bg-sunset-pink transition-colors font-bold py-4 rounded-xl text-lg">
+        <button type="submit" id="lead-submit" class="w-full bg-sunset hover:bg-sunset-pink transition-colors font-bold py-4 rounded-xl text-lg disabled:opacity-60">
           Gửi đăng ký
         </button>
+        <p id="lead-msg" class="text-center text-sm hidden"></p>
       </form>
       <div class="flex gap-3 justify-center mt-8">
         <a href={`tel:${HOTLINE}`} onclick="trackContact()" class="flex-1 bg-white/10 hover:bg-white/20 py-3 rounded-xl font-semibold transition-colors">📞 Hotline</a>
@@ -256,6 +259,57 @@ const faq = [
       <p class="text-white/40 text-xs mt-6">Hotline: {HOTLINE_DISPLAY}</p>
     </div>
   </section>
+
+  <!-- ============ FORM SUBMIT → GOOGLE SHEET ============ -->
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('lead-form');
+      if (!form) return;
+      const btn = document.getElementById('lead-submit');
+      const msg = document.getElementById('lead-msg');
+      const endpoint = form.dataset.endpoint || '';
+      function say(text, ok) {
+        msg.textContent = text;
+        msg.classList.remove('hidden');
+        msg.style.color = ok ? '#86efac' : '#fca5a5';
+      }
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (typeof trackLead === 'function') { try { trackLead(); } catch (_) {} }
+        const data = {
+          name: form.name.value.trim(),
+          phone: form.phone.value.trim(),
+          loai: form.loai.value,
+          page: 'Quậy Complex',
+          time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
+          ua: navigator.userAgent,
+        };
+        if (!endpoint || endpoint.indexOf('PASTE_') === 0) {
+          say('✅ Đã ghi nhận! An Khang Real sẽ liên hệ anh/chị sớm.', true);
+          form.reset();
+          return;
+        }
+        btn.disabled = true;
+        const old = btn.textContent;
+        btn.textContent = 'Đang gửi...';
+        try {
+          await fetch(endpoint, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(data),
+          });
+          say('✅ Đăng ký thành công! An Khang Real sẽ liên hệ anh/chị sớm.', true);
+          form.reset();
+        } catch (err) {
+          say('⚠️ Có lỗi khi gửi. Vui lòng gọi Hotline giúp em.', false);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = old;
+        }
+      });
+    })();
+  </script>
 
   <!-- ============ LIGHTBOX ============ -->
   <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm select-none">
