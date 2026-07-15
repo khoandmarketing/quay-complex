@@ -53,3 +53,16 @@ function doPost(e) {
 function doGet() {
   return ContentService.createTextOutput('Quậy Complex lead endpoint OK');
 }
+
+/**
+ * CHẠY HÀM NÀY 1 LẦN trong editor để cấp quyền gửi ra ngoài (Telegram).
+ * Chọn hàm "testTelegram" ở thanh trên → bấm Run → Authorize → cho phép.
+ * Sau đó Telegram sẽ bắn được. Nhận được tin "✅ Test OK" là xong.
+ */
+function testTelegram() {
+  UrlFetchApp.fetch('https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage', {
+    method: 'post',
+    payload: { chat_id: TELEGRAM_CHAT_ID, text: '✅ Test OK — Quậy Complex đã kết nối Telegram.' },
+    muteHttpExceptions: true,
+  });
+}
